@@ -69,7 +69,8 @@ func linearProjectionAt(f vectorFunc, x vector) linearMap {
 		var limit float64 = 0
 		hLength := lengthVect(h)
 		for k := 0.1; k*hLength > 0.00000000001; k = k / 2 {
-			projection := (f(sumVect(x, scaleVect(k, h))) - f(x)) / k
+			g := scaleVect(k, h)
+			projection := (f(sumVect(x, g)) - f(x)) / k
 			if math.Abs(limit-projection) < 0.0000001 {
 				return limit
 			}
